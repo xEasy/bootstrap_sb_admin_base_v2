@@ -26,9 +26,11 @@ $(function() {
 
   var url = window.location;
   var element = $('ul.nav a').filter(function() {
-    return this.href == url || url.href.indexOf(this.href) == 0;
+    return this.href == url || (url.href.indexOf(this.href) == 0 && !$("ul.nav a[href='" + url + "']"));
   }).addClass('active').parent().parent().addClass('in').parent();
   if (element.is('li')) {
+    element.parents("li").addClass("active");
+    element.parents("ul").addClass("in");
     element.addClass('active');
   }
 });
